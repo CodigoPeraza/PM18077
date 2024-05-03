@@ -1,7 +1,7 @@
 section .data
     ; Mensaje de encabezado para el resultado
-    result_header db 'El resultado de la resta de: ', 0
-    result_len equ $ - result_header  ; Longitud del mensaje de encabezado
+    msj_resultado db 'El resultado de la resta de: ', 0
+    result_len equ $ - msj_resultado  ; Longitud del mensaje de encabezado
     newline db 10                      ; Salto de línea
     ; Definición de variables para los números y el resultado
     numero1 dw 0
@@ -44,7 +44,7 @@ _start:
     ; Mostrar el mensaje de resultado
     mov eax, 4
     mov ebx, 1
-    mov ecx, result_header
+    mov ecx, msj_resultado
     mov edx, result_len
     int 0x80
 
@@ -55,8 +55,8 @@ _start:
     call imprimir_numero
     mov eax, 4
     mov ebx, 1
-    mov ecx, minus
-    mov edx, minus_len
+    mov ecx, msj_separador
+    mov edx, msj_separador_len
     int 0x80
 
     mov eax, 4
@@ -65,8 +65,8 @@ _start:
     call imprimir_numero
     mov eax, 4
     mov ebx, 1
-    mov ecx, minus
-    mov edx, minus_len
+    mov ecx, msj_separador
+    mov edx, msj_separador_len
     int 0x80
 
     mov eax, 4
@@ -104,8 +104,8 @@ imprimir_numero: ;Función
     ret
 
 section .data
-    minus db ' -', 0        ; Texto " -" para separar los números
-    minus_len equ $ - minus  ; Longitud del texto " -"
+    msj_separador db ' -', 0        ; Texto " -" para separar los números
+    msj_separador_len equ $ - msj_separador  ; Longitud del texto " -"
     equal db ' es ', 0      ; Texto " es " para indicar la igualdad
     equal_len equ $ - equal ; Longitud del texto " es "
 
